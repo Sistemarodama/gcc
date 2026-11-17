@@ -34,6 +34,7 @@ document.getElementById("direto").href=URL_APP;
 f.addEventListener("load",function(){l.style.opacity=0;setTimeout(function(){l.style.display="none"},400)});
 setTimeout(function(){if(l.style.display!=="none")document.getElementById("erro").style.display="block"},15000);
 f.src=URL_APP;
+window.addEventListener("message",function(e){try{var h=new URL(e.origin).hostname;if(!/(^|\.)googleusercontent\.com$|(^|\.)google\.com$/.test(h))return}catch(_){return}if(e.data&&e.data.gcc==="recarregar"){l.style.display="flex";l.style.opacity=1;document.getElementById("erro").style.display="none";f.src=URL_APP+"?t="+Date.now()}});
 if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js").catch(function(){});
 </script>
 </body>
