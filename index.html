@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GCC Rodama</title>
+<meta name="theme-color" content="#12382F">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="GCC Rodama">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<style>
+html,body{margin:0;height:100%;background:#12382F;overflow:hidden;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+#app{position:fixed;inset:0;width:100%;height:100%;border:0;background:#12382F;padding-top:env(safe-area-inset-top)}
+#load{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;color:#fff;transition:opacity .4s}
+#load img{width:96px;height:96px}
+#load b{font-size:22px;letter-spacing:.04em}
+#load small{color:#E7A52B;font-size:14px}
+#erro{display:none;max-width:320px;text-align:center;font-size:14px;line-height:1.45;color:#e9f0ec}
+#erro a{display:inline-block;margin-top:12px;background:#E7A52B;color:#12382F;padding:10px 16px;border-radius:10px;font-weight:700;text-decoration:none}
+</style>
+</head>
+<body>
+<div id="load"><img src="icon-192.png" alt=""><b>GCC Rodama</b><small>Abrindo…</small>
+<div id="erro">Não carregou. Confira a internet. Se aparecer “Não foi possível abrir o arquivo”, saia das outras contas Google deste aparelho ou abra pelo botão abaixo.<br><a id="direto" target="_blank" rel="noopener">Abrir direto</a></div></div>
+<iframe id="app" title="GCC Rodama" allow="clipboard-write; clipboard-read; geolocation"></iframe>
+<script>
+var URL_APP="https://script.google.com/macros/s/AKfycbyXYxfiOvaF_dmpQXZWd_oqpI8BIuvFtGAZKDUPbXkHNrKYonuSl5D4TSGCMnVoXn-i-w/exec";
+var f=document.getElementById("app"),l=document.getElementById("load");
+document.getElementById("direto").href=URL_APP;
+f.addEventListener("load",function(){l.style.opacity=0;setTimeout(function(){l.style.display="none"},400)});
+setTimeout(function(){if(l.style.display!=="none")document.getElementById("erro").style.display="block"},15000);
+f.src=URL_APP;
+if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js").catch(function(){});
+</script>
+</body>
+</html>
